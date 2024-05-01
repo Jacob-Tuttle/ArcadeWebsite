@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Wordle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+
+            body {
+                display:flex;
+                justify-content: center;
+                align-content: center;
+            }
+
+            #game-board {
+                margin-top: 20px;
+                width: 535px;
+                height: 88vh;
+                border: 3px solid dimgray;
+                display: flex;
+                flex-wrap: wrap;
+                align-content:  flex-start;
+            }
+
+            .game-row{
+                display: flex;
+            }
+
+            .game-square {
+                border: 3px solid dimgray;
+                margin-top: 10px;
+                margin-left: 10px;
+                width: 90px;
+                height: 90px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 32px;
+                font-family: sans-serif;
+                font-weight: bold;
+            }
+            .game-square:hover{
+                border-color: black;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div id="game-board">
+            <div class="game-row"  id="row1">
+                <div class="game-square" id="square1"></div>
+                <div class="game-square" id="square2"></div>
+                <div class="game-square" id="square3"></div>
+                <div class="game-square" id="square4"></div>
+                <div class="game-square" id="square5"></div>
+            </div>
+
+            <div class="game-row"  id="row2">
+                <div class="game-square" id="square6"></div>
+                <div class="game-square" id="square7"></div>
+                <div class="game-square" id="square8"></div>
+                <div class="game-square" id="square9"></div>
+                <div class="game-square" id="square10"></div>
+            </div>
+
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const squares = document.querySelectorAll('.game-square');
+                let currentSquare = 1;
+
+                document.addEventListener('keydown', (event) => {
+                    const key = event.key.toLowerCase();
+                    const currentSquareElement = document.getElementById(`square${currentSquare}`);
+
+                    if (key.length === 1 && currentSquare <= squares.length) {
+                        currentSquareElement.textContent = key.toUpperCase();
+                        currentSquare++;
+                    } else if (key === 'backspace' && currentSquare > 1) {
+                        currentSquare--;
+                        const previousSquareElement = document.getElementById(`square${currentSquare}`);
+                        previousSquareElement.textContent = '';
+                    }
+                });
+
+
+
+            });
+        </script>
+    </body>
+
+</html>
