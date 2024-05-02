@@ -15,6 +15,9 @@
                 color: inherit;
             }
 
+            h2{
+                margin:0;
+            }
 
             #menu-bar{
                 display:flex;
@@ -41,13 +44,22 @@
                 align-items: center;
             }
 
-
-
-            #hangman{
+            #hangman {
                 margin-top: 20px;
-                height:400px;
-                width:400px;
+                height: 200px;
+                width: 200px;
                 background-color: gray;
+                /* Added styles to center the image and make it fit inside the box */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden; /* Hide any parts of the image that exceed the box */
+            }
+
+            #hangman img {
+                height: 200px;
+                width: 200px;
+                /* Prevent the image from being larger than its container */
             }
 
             #word-to-be-guessed{
@@ -74,11 +86,46 @@
             }
 
             #already-guessed-letters{
-                margin-top: 20px;
-                width: 400px;
+                width: 600px;
                 height: 50px;
                 background-color: lightgray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
+
+            .guessed-letter{
+                margin-right:10px;
+            }
+
+            #title-guessed-letters{
+                margin-top: 20px;
+            }
+
+            .alphabet-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                margin-top: 20px;
+            }
+
+            .alphabet-button {
+                width: 20px;
+                height: 40px;
+                padding: 5px;
+                text-align: center;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .alphabet-button:hover {
+                background-color: #0056b3;
+            }
+
+
         </style>
 
     </head>
@@ -91,33 +138,155 @@
         </div>
 
         <div id="game-board">
-            <div id="hangman">
+            <div id="hangman"></div>
 
+            <div id="word-to-be-guessed"></div>
+
+            <div>
+                <h2 id="title-guessed-letters">Already Guessed Letters</h2>
             </div>
 
-            <div id="word-to-be-guessed">
-                <div class="letter-box">
-                    T
-                </div>
-                <div class="letter-box">
-                    T
-                </div>
-                <div class="letter-box">
-                    T
-                </div>
+            <div id="already-guessed-letters"></div>
+
+            <div class="alphabet-buttons">
+                <button id="Alphabet-Button-1" class="alphabet-button">A</button>
+                <button id="Alphabet-Button-2" class="alphabet-button">B</button>
+                <button id="Alphabet-Button-3" class="alphabet-button">C</button>
+                <button id="Alphabet-Button-4" class="alphabet-button">D</button>
+                <button id="Alphabet-Button-5" class="alphabet-button">E</button>
+                <button id="Alphabet-Button-6" class="alphabet-button">F</button>
+                <button id="Alphabet-Button-7" class="alphabet-button">G</button>
+                <button id="Alphabet-Button-8" class="alphabet-button">H</button>
+                <button id="Alphabet-Button-9" class="alphabet-button">I</button>
+                <button id="Alphabet-Button-10" class="alphabet-button">J</button>
+                <button id="Alphabet-Button-11" class="alphabet-button">K</button>
+                <button id="Alphabet-Button-12" class="alphabet-button">L</button>
+                <button id="Alphabet-Button-13" class="alphabet-button">M</button>
+                <button id="Alphabet-Button-14" class="alphabet-button">N</button>
+                <button id="Alphabet-Button-15" class="alphabet-button">O</button>
+                <button id="Alphabet-Button-16" class="alphabet-button">P</button>
+                <button id="Alphabet-Button-17" class="alphabet-button">Q</button>
+                <button id="Alphabet-Button-18" class="alphabet-button">R</button>
+                <button id="Alphabet-Button-19" class="alphabet-button">S</button>
+                <button id="Alphabet-Button-20" class="alphabet-button">T</button>
+                <button id="Alphabet-Button-21" class="alphabet-button">U</button>
+                <button id="Alphabet-Button-22" class="alphabet-button">V</button>
+                <button id="Alphabet-Button-23" class="alphabet-button">W</button>
+                <button id="Alphabet-Button-24" class="alphabet-button">X</button>
+                <button id="Alphabet-Button-25" class="alphabet-button">Y</button>
+                <button id="Alphabet-Button-26" class="alphabet-button">Z</button>
             </div>
-
-            <div id="already-guessed-letters">
-
-            </div>
-
-            <div id="letter-guessed">
+            <div id="guessing-letter">
 
             </div>
 
         </div>
 
         <script>
+
+            const wordBank = ["GRAPE", "FROG", "BOB CAT"];
+            const availableLetters = document.querySelectorAll(".alphabet-button");
+            function generateRandomNumber() {return Math.floor(Math.random() * wordBank.length-1) + 1;}
+            const x = generateRandomNumber();
+            const chosenWord = wordBank[x];
+            let hangmanStage = 0;
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                availableLetters.forEach(letter => letter.addEventListener('click', handleAvailableLetterClick));
+            });
+
+            displayWordToGuess();
+            progressHangmanStage(hangmanStage);
+            hangmanStage++;
+
+            function displayWordToGuess(){
+                for (let x = 0; x < chosenWord.length; x++){
+                    let letter = chosenWord[x];
+                    if(letter === " "){
+                        addLetterBoxToDom(true);
+                    }
+                    else{
+                        addLetterBoxToDom(false, x);
+                    }
+                }
+            }
+
+            function addLetterBoxToDom(blank, letterPositionInWord){
+                const parentElement = document.querySelector('#word-to-be-guessed');
+                if(blank === true){
+                    const newDiv = document.createElement('div');
+                    newDiv.classList.add('letter-box-empty');
+                    parentElement.appendChild(newDiv);
+                }
+                else{
+                    const newDiv = document.createElement('div');
+                    newDiv.classList.add('letter-box');
+                    newDiv.id = "letter-box-" + letterPositionInWord;
+                    parentElement.appendChild(newDiv);
+                }
+
+
+            }
+
+            function handleAvailableLetterClick(event){
+
+                if(hangmanStage !== 7) {
+
+                    const clickedLetter = event.target.textContent;
+                    let matched = false;
+
+                    for (let x = 0; x < chosenWord.length; x++) {
+                        if (clickedLetter === chosenWord[x]) {
+                            const editLetterBox = document.querySelector('#letter-box-' + x);
+                            editLetterBox.textContent = chosenWord[x].toString();
+                            matched = true;
+                        }
+                    }
+                    if (matched === false) {
+                        progressHangmanStage(hangmanStage);
+                        hangmanStage++;
+                    }
+                    addLetterToUsedList(clickedLetter);
+                    removeLetterFromAvailableLetters(clickedLetter);
+                }
+            }
+
+            function removeLetterFromAvailableLetters(letterToRemove){
+                availableLetters.forEach(letter => {
+                    if (letter.textContent === letterToRemove) {
+                        letter.remove();
+                    }
+                });
+            }
+
+            function addLetterToUsedList(letterToAdd){
+                const usedBank = document.querySelector('#already-guessed-letters');
+
+                const newDiv = document.createElement('div');
+                newDiv.classList.add('guessed-letter');
+                newDiv.textContent = letterToAdd;
+
+                usedBank.appendChild(newDiv);
+            }
+
+            function progressHangmanStage(stage){
+                const hangmanDisplay = document.querySelector('#hangman');
+                const hangmanImg = hangmanDisplay.querySelector('img');
+
+                if (!hangmanImg) {
+                    // If there's no img element inside #hangman, create one
+                    const newHangmanImg = document.createElement('img');
+                    newHangmanImg.src = `../stage${stage}.png`;
+                    hangmanDisplay.appendChild(newHangmanImg);
+                } else {
+                    // If there's already an img element, update its src attribute
+                    hangmanImg.src = `../stage${stage}.png`;
+                }
+            }
+
+            function resetGame(){
+            }
         </script>
     </body>
 
