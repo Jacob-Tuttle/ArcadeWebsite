@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <style>
+        .hangman {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            margin-top: 50px;
+        }
+
+        .head,
+        .torso,
+        .left-arm,
+        .right-arm,
+        .left-leg,
+        .right-leg {
+            width: 20px;
+            height: 50px;
+            background-color: black;
+            margin: 5px;
+        }
+
+        .head {
+            border-radius: 50%;
+        }
+
+        .torso {
+            width: 10px;
+            height: 80px;
+        }
+
+        .left-arm,
+        .right-arm {
+            transform-origin: top;
+            transform: rotate(45deg);
+        }
+
+        .left-leg,
+        .right-leg {
+            transform-origin: bottom;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+<div class="hangman">
+    <div class="head"></div>
+    <div class="torso"></div>
+    <div class="left-arm"></div>
+    <div class="right-arm"></div>
+    <div class="left-leg"></div>
+    <div class="right-leg"></div>
+</div>
+</body>
+</html>

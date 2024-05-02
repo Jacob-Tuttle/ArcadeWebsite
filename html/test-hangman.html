@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Hang Man</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            body{
+                margin:0;
+            }
+
+            a{
+                text-decoration: none;
+                color: inherit;
+            }
+
+
+            #menu-bar{
+                display:flex;
+                align-items: center;
+
+                justify-content: space-between; /* Distribute items evenly with space between them */
+                padding: 10px 0;
+                width:100%;
+                background-color: grey;
+            }
+
+            #home-button{
+                padding-left: 20px;
+                color:blue;
+            }
+
+            #github-repo-button{
+                padding-right: 30px;
+            }
+
+            #game-board{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+
+
+            #hangman{
+                margin-top: 20px;
+                height:400px;
+                width:400px;
+                background-color: gray;
+            }
+
+            #word-to-be-guessed{
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .letter-box{
+                width: 20px;
+                height: 40px;
+                background-color: white;
+                border-bottom: 2px solid black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 10px;
+            }
+
+            .letter-box-empty{
+                width: 20px;
+                height: 40px;
+                background-color: white;
+                margin-right: 10px;
+            }
+
+            #already-guessed-letters{
+                margin-top: 20px;
+                width: 400px;
+                height: 50px;
+                background-color: lightgray;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div id="menu-bar">
+            <a id="home-button" href="home-screen.html">Game Arcade</a>
+            <!--Source: https://www.flaticon.com/free-icons/cat-->
+            <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../github-logo.png"></a>
+        </div>
+
+        <div id="game-board">
+            <div id="hangman">
+
+            </div>
+
+            <div id="word-to-be-guessed">
+                <div class="letter-box">
+                    T
+                </div>
+                <div class="letter-box">
+                    T
+                </div>
+                <div class="letter-box">
+                    T
+                </div>
+            </div>
+
+            <div id="already-guessed-letters">
+
+            </div>
+
+            <div id="letter-guessed">
+
+            </div>
+
+        </div>
+
+        <script>
+        </script>
+    </body>
+
+</html>

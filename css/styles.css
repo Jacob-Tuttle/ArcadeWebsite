@@ -1,0 +1,43 @@
+body{
+    margin:0;
+    text-align: center;
+    background-image: url("../tictactoe-background.png");
+    height:100vh;
+}
+
+h2{
+    margin:0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#menu-bar{
+    display:flex;
+    align-items: center;
+
+    justify-content: space-between;
+    padding: 10px 0;
+    width:100%;
+    background-color: grey;
+}
+
+#home-button{
+    padding-left: 20px;
+    color:blue;
+}
+
+#content{
+    padding-top:40px;
+    padding-bottom:40px;
+    background-color: lightgray;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+}
+
+#github-repo-button{
+    padding-right: 30px;
+}
