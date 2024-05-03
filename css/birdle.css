@@ -107,8 +107,8 @@ button:hover {
 .oval {
     width: 100px;
     height: 50px;
-    background-color: forestgreen; /* Blue background color, you can change it */
-    border-radius: 50%; /* Creates an oval shape */
+    background-color: forestgreen;
+    border-radius: 50%;
     position: relative;
     overflow: hidden; /* Ensures bars and text stay within the oval */
     display: flex;
@@ -120,20 +120,20 @@ button:hover {
 .bar {
     position: absolute;
     width: 70%;
-    height: 8px; /* Height of the bars, adjust as needed */
-    top: 50%; /* Positions bars vertically at the center */
+    height: 8px;
+    top: 50%;
     transform: translateY(-50%);
     border-radius: 10px;
 }
 
 .bar.top {
     margin-top: 5px;
-    top: 20%; /* Adjust top bar's position */
+    top: 20%;
     background-color: darkred;
 }
 
 .bar.bottom {
-    top: 70%; /* Adjust bottom bar's position */
+    top: 70%;
     background-color: blue;
 
 }

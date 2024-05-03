@@ -96,7 +96,7 @@ function addInternalContent() {
     oval.appendChild(barBottom);
     oval.appendChild(text);
 
-    body.insertBefore(content, end); // Insert content before end
+    body.insertBefore(content, end);
 
 }
 
