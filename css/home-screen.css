@@ -1,0 +1,103 @@
+body {
+    margin:0;
+}
+
+#side-bar {
+    width: 250px;
+    background-color: lightgray;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.sidebar-game-button a {
+    color: black;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.sidebar-game-button a:hover{
+    color:white;
+}
+.sidebar-game-button:hover{
+    background-color: black;
+}
+
+.sidebar-game-button{
+    margin-left: 25px;
+    margin-top: 10px;
+    height: 50px;
+    width: 200px;
+    border-radius: 20px;
+    background-color: gray;
+}
+
+
+.internal-content{
+    margin-left: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.oval {
+    width: 300px;
+    height: 150px;
+    background-color: forestgreen; /* Blue background color, you can change it */
+    border-radius: 50%; /* Creates an oval shape */
+    position: relative;
+    overflow: hidden; /* Ensures bars and text stay within the oval */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bar {
+    position: absolute;
+    width: 70%;
+    height: 8px; /* Height of the bars, adjust as needed */
+    top: 50%; /* Positions bars vertically at the center */
+    transform: translateY(-50%);
+    border-radius: 10px;
+}
+
+.bar.top {
+    margin-top: 5px;
+    top: 20%; /* Adjust top bar's position */
+    background-color: darkred;
+}
+
+.bar.bottom {
+    top: 70%; /* Adjust bottom bar's position */
+    background-color: blue;
+    margin-top: 5px;
+
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff; /* Text color, you can change it */
+    font-size: 25px; /* Adjust font size as needed */
+    font-weight: bold; /* Optionally make text bold */
+    text-align: center;
+}
