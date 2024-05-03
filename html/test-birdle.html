@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birdle</title>
+    <style>
+
+        body{
+            margin:0;
+        }
+
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+
+        h2{
+            margin:0;
+        }
+
+        #menu-bar{
+            display:flex;
+            align-items: center;
+
+            justify-content: space-between; /* Distribute items evenly with space between them */
+            padding: 10px 0;
+            width:100%;
+            background-color: grey;
+            margin-bottom: 20px;
+        }
+
+        #home-button{
+            padding-left: 20px;
+            color:blue;
+        }
+
+        #github-repo-button{
+            padding-right: 30px;
+        }
+        #game-container{
+            width:50%;
+            height:100%;
+            margin: 0 auto; /* Center the game container horizontally */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: lightgray;
+            padding-bottom: 20px;
+            border-radius: 10px;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
+            grid-template-rows: repeat(6, 1fr); /* 6 rows with equal height */
+            gap: 5px; /* Gap between cells */
+            padding: 10px; /* Padding around the grid */
+        }
+
+        .cell {
+            background-color: white;
+            border: 1px solid black;
+            height: 70px; /* Adjust height as needed */
+            width:70px;
+            text-align: center;
+            line-height: 50px; /* Vertical centering */
+        }
+
+        #guessed-word-box{
+            display: flex;
+            justify-content: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button{
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            width:60px;
+            height:40px;
+            margin-left: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #title{
+            margin-top: 20px;
+        }
+
+        .wrong-position{
+            background-color: #c9b458;
+        }
+
+        .correct-position{
+            background-color: #6aaa64;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-bar">
+        <a id="home-button" href="home-screen.html">Game Arcade</a>
+        <!--Source: https://www.flaticon.com/free-icons/cat-->
+        <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../github-logo.png"></a>
+    </div>
+
+    <div id="game-container">
+        <div id="title">
+            <h2>Birdle</h2>
+        </div>
+        <div id="game-board">
+            <div id="cell1-1" class="cell row1"></div>
+            <div id="cell1-2" class="cell row1"></div>
+            <div id="cell1-3" class="cell row1"></div>
+            <div id="cell1-4" class="cell row1"></div>
+            <div id="cell1-5" class="cell row1"></div>
+            <div id="cell2-1" class="cell row2"></div>
+            <div id="cell2-2" class="cell row2"></div>
+            <div id="cell2-3" class="cell row2"></div>
+            <div id="cell2-4" class="cell row2"></div>
+            <div id="cell2-5" class="cell row2"></div>
+            <div id="cell3-1" class="cell row3"></div>
+            <div id="cell3-2" class="cell row3"></div>
+            <div id="cell3-3" class="cell row3"></div>
+            <div id="cell3-4" class="cell row3"></div>
+            <div id="cell3-5" class="cell row3"></div>
+            <div id="cell4-1" class="cell row4"></div>
+            <div id="cell4-2" class="cell row4"></div>
+            <div id="cell4-3" class="cell row4"></div>
+            <div id="cell4-4" class="cell row4"></div>
+            <div id="cell4-5" class="cell row4"></div>
+            <div id="cell5-1" class="cell row5"></div>
+            <div id="cell5-2" class="cell row5"></div>
+            <div id="cell5-3" class="cell row5"></div>
+            <div id="cell5-4" class="cell row5"></div>
+            <div id="cell5-5" class="cell row5"></div>
+            <div id="cell6-1" class="cell row6"></div>
+            <div id="cell6-2" class="cell row6"></div>
+            <div id="cell6-3" class="cell row6"></div>
+            <div id="cell6-4" class="cell row6"></div>
+            <div id="cell6-5" class="cell row6"></div>
+
+        </div>
+        <h2>Enter a Bird:</h2>
+        <div id="guessed-word-box">
+            <label for="wordInput"></label>
+            <input type="text" id="wordInput" name="wordInput">
+            <button id="submit" type="submit">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const birdArray = ["BOOBY", "BRANT", "CRAKE", "CRANE", "DIVER", "EAGLE", "EGRET", "EIDER", "FINCH", "GALAH", "GOOSE", "GREBE", "HERON", "HOBBY", "HOMER", "JUNCO", "MACAW", "MERLE", "MINER", "MUNIA", "MYNAH", "NODDY", "OUSEL", "OUZEL", "OWLET", "PEWIT", "PIPIT", "PITTA", "PRION", "QUAIL", "RAVEN", "ROBIN", "SAKER", "SCAUP", "SERIN", "SNIPE", "STILT", "STORK", "SWIFT", "TWITE", "VEERY", "VIREO"];
+        //const birdArray = ["PIPIT", "PITTA"]
+        function generateRandomNumber() {return Math.floor(Math.random() * birdArray.length-1) + 1;}
+        const x = generateRandomNumber();
+        const chosenWord = birdArray[x];
+
+        const textBox = document.querySelector("#wordInput");
+        const submitButton = document.querySelector("#submit");
+
+        let currentRow = 1;
+        let usedValidWords = [];
+        let invalidWord = false;
+        let hasWon = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            submitButton.addEventListener('click', handleSubmitButtonClick);
+
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                handleSubmitButtonClick();
+            }
+        });
+        function handleSubmitButtonClick() {
+            if ( hasWon === false) {
+                let wordEntered = textBox.value.trim().toUpperCase();
+                let isValid = validateWordEntered(wordEntered);
+                if (!isValid) {
+                    if (invalidWord === false) {
+                        displayInvalidWordMessage();
+                        invalidWord = true;
+                    }
+                } else {
+                    if (invalidWord === true) {
+                        removeInvalidWordMessage();
+                        invalidWord = false;
+                    }
+                    addWordToGameBoard(wordEntered);
+                    textBox.value = '';
+                }
+            }
+        }
+
+        function displayInvalidWordMessage() {
+            const boardContainer = document.querySelector('#game-container');
+            let newDiv = document.createElement('div');
+            newDiv.id = "invalid"
+            newDiv.textContent = "Invalid word";
+            boardContainer.appendChild(newDiv);
+        }
+
+        function removeInvalidWordMessage() {
+            const invalidMessage = document.querySelector('#invalid')
+            const boardContainer = document.querySelector('#game-container');
+            boardContainer.removeChild(invalidMessage);
+        }
+
+        function validateWordEntered(word) {
+            // Word entered is only five letters
+            if (word.length !== 5) {
+                return false;
+            }
+
+            // Check if the word is in the birdArray (case insensitive)
+            let validBirdName = birdArray.some(bird => bird.toUpperCase() === word);
+            if (!validBirdName) {
+                return false;
+            }
+
+            let alreadyChosenBirdName = usedValidWords.some(usedWord => usedWord === word);
+            if(alreadyChosenBirdName){
+                return false;
+            }
+
+            // Check if the word only contains letters
+            const lettersOnlyRegex = /^[A-Za-z]+$/;
+            if (!word.match(lettersOnlyRegex)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function addWordToGameBoard(word){
+            for (let x = 0; x < word.length; x++){
+                let cell = document.querySelector('#cell' + currentRow + '-' + (x+1));
+                cell.textContent = word.charAt(x);
+            }
+            usedValidWords.push(word);
+            colorCells(word)
+            currentRow++;
+        }
+
+        function colorCells(word) {
+            console.log(chosenWord)
+            let chosenUsedLetterIndex = [];
+            let userUsedLetterIndex = [];
+
+            //first check for letters in correct positions
+            let validPositionCount = 0;
+            for (let letterInUserWord = 0; letterInUserWord < word.length; letterInUserWord++) {
+                for (let letterInChosenWord = 0; letterInChosenWord < chosenWord.length; letterInChosenWord++) {
+
+                    if (word.charAt(letterInUserWord) === chosenWord.charAt(letterInChosenWord) && letterInChosenWord === letterInUserWord) {
+                        const cell = document.querySelector('#cell' + currentRow + '-' + (letterInUserWord + 1)); //cell index start at 1 not 0 so +1
+                        cell.classList.add('correct-position')
+                        chosenUsedLetterIndex.push(letterInChosenWord)
+                        userUsedLetterIndex.push(letterInUserWord)
+                        validPositionCount++;
+                    }
+                }
+            }
+
+            if (validPositionCount === 5){
+                hasWon = true;
+                return;
+            }
+
+            //second pass color yellow
+            for (let letterInUserWord = 0; letterInUserWord < word.length; letterInUserWord++) {
+                for (let letterInChosenWord = 0; letterInChosenWord < chosenWord.length; letterInChosenWord++) {
+
+                    if (word.charAt(letterInUserWord) === chosenWord.charAt(letterInChosenWord) && letterInChosenWord !== letterInUserWord) {
+                        if (chosenUsedLetterIndex.every(letter => letter !== letterInChosenWord)) {
+                            const cell = document.querySelector('#cell' + currentRow + '-' + (letterInUserWord + 1)); //cell index start at 1 not 0 so +1
+                            cell.classList.add('wrong-position')
+                            chosenUsedLetterIndex.push(letterInChosenWord)
+                            userUsedLetterIndex.push(letterInUserWord)
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
