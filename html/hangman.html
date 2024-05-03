@@ -28,7 +28,7 @@
                 justify-content: space-between; /* Distribute items evenly with space between them */
                 padding: 10px 0;
                 width:100%;
-                background-color: grey;
+                background-color: lightgrey;
             }
 
             #home-button{
@@ -130,6 +130,50 @@
                 background-color: #0056b3;
             }
 
+            .oval {
+                width: 100px;
+                height: 50px;
+                background-color: forestgreen; /* Blue background color, you can change it */
+                border-radius: 50%; /* Creates an oval shape */
+                position: relative;
+                overflow: hidden; /* Ensures bars and text stay within the oval */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+
+            .bar {
+                position: absolute;
+                width: 70%;
+                height: 8px; /* Height of the bars, adjust as needed */
+                top: 50%; /* Positions bars vertically at the center */
+                transform: translateY(-50%);
+                border-radius: 10px;
+            }
+
+            .bar.top {
+                margin-top: 5px;
+                top: 20%; /* Adjust top bar's position */
+                background-color: darkred;
+            }
+
+            .bar.bottom {
+                top: 70%; /* Adjust bottom bar's position */
+                background-color: blue;
+
+            }
+
+            .text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #ffffff; /* Text color, you can change it */
+                font-size: 12px; /* Adjust font size as needed */
+                font-weight: bold; /* Optionally make text bold */
+                text-align: center;
+            }
 
         </style>
 
@@ -137,7 +181,13 @@
 
     <body>
         <div id="menu-bar">
-            <a id="home-button" href="home-screen.html">Game Arcade</a>
+            <a id="home-button" href="home-screen.html">
+                <div class="oval">
+                    <div class="bar top"></div>
+                    <div class="bar bottom"></div>
+                    <div class="text">Jacob's Arcade</div>
+                </div>
+            </a>
             <!--Source: https://www.flaticon.com/free-icons/cat-->
             <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../github-logo.png"></a>
         </div>
@@ -190,7 +240,12 @@
             function generateRandomNumber() {return Math.floor(Math.random() * wordBank.length-1) + 1;}
             const x = generateRandomNumber();
             const chosenWord = wordBank[x];
+            console.log(chosenWord)
+
+
             let hangmanStage = 0;
+            let hasWon = false;
+            let countNumberMatched = 0;
 
 
             document.addEventListener('DOMContentLoaded', () => {
@@ -213,6 +268,39 @@
                 }
             }
 
+            function displayWinMessage(){
+                let gameContainer = document.querySelector('#game-container');
+
+                let newDiv = document.createElement('div');
+                newDiv.id = "winner"
+                newDiv.textContent = "Winner!";
+                newDiv.style.color = "green";
+                newDiv.style.fontSize = "20px";
+                let newDiv2 = document.createElement('div');
+                newDiv2.id = "refresh"
+                newDiv2.textContent = "Refresh the page to restart";
+                newDiv2.style.color = "black";
+                newDiv2.style.fontSize = "16px";
+                gameContainer.appendChild(newDiv);
+                gameContainer.appendChild(newDiv2);
+            }
+
+            function displayLoseMessage(){
+                let gameContainer = document.querySelector('#game-container');
+
+                let newDiv = document.createElement('div');
+                newDiv.id = "loser"
+                newDiv.textContent = "Game Over!";
+                newDiv.style.color = "red";
+                newDiv.style.fontSize = "20px";
+                let newDiv2 = document.createElement('div');
+                newDiv2.id = "refresh"
+                newDiv2.textContent = "Refresh the page to restart";
+                newDiv2.style.color = "black";
+                newDiv2.style.fontSize = "16px";
+                gameContainer.appendChild(newDiv);
+                gameContainer.appendChild(newDiv2);
+            }
             function addLetterBoxToDom(blank, letterPositionInWord){
                 const parentElement = document.querySelector('#word-to-be-guessed');
                 if(blank === true){
@@ -231,14 +319,14 @@
             }
 
             function handleAvailableLetterClick(event){
-
-                if(hangmanStage !== 7 || !checkWin()) {
+                if(hangmanStage !== 7 && hasWon === false) {
 
                     const clickedLetter = event.target.textContent;
                     let matched = false;
 
                     for (let x = 0; x < chosenWord.length; x++) {
                         if (clickedLetter === chosenWord[x]) {
+                            countNumberMatched++;
                             const editLetterBox = document.querySelector('#letter-box-' + x);
                             editLetterBox.textContent = chosenWord[x].toString();
                             matched = true;
@@ -248,8 +336,17 @@
                         progressHangmanStage(hangmanStage);
                         hangmanStage++;
                     }
+
+
                     addLetterToUsedList(clickedLetter);
                     removeLetterFromAvailableLetters(clickedLetter);
+                    if (countNumberMatched === chosenWord.length){
+                        displayWinMessage();
+                        hasWon=true;
+                    }
+                    if(hangmanStage === 7){
+                        displayLoseMessage();
+                    }
                 }
             }
 
@@ -286,8 +383,6 @@
                 }
             }
 
-            function resetGame(){
-            }
         </script>
     </body>
 
