@@ -4,40 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe - Game Arcade</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/tictactoe.css">
 </head>
 <body>
     <div id="menu-bar">
-        <a id="home-button" href="home-screen.html">Game Arcade</a>
+        <a id="home-button" href="home-screen.html">
+            <div class="oval">
+                <div class="bar top"></div>
+                <div class="bar bottom"></div>
+                <div class="text">Jacob's Arcade</div>
+            </div>
+        </a>
         <!--Source: https://www.flaticon.com/free-icons/cat-->
-        <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../github-logo.png"></a>
+        <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../assets/github-logo.png"></a>
     </div>
 
-    <div id="content">
-        <div id="gameContainer" class="game-play-area">
-            <h2>Tic Tac Toe</h2>
-            <div id="difficultySelection">
-                <label>Difficulty:</label>
-                <input type="radio" name="difficulty" id="easy" value="easy"> Easy
-                <input type="radio" name="difficulty" id="medium" value="medium" checked> Medium
-                <input type="radio" name="difficulty" id="hard" value="hard"> Hard
-            </div>
-            <div id="gameBoard" class="board">
-                <!-- Creating 9 cells for the Tic Tac Toe grid -->
-                <button class="cell" data-cell-index="0"></button>
-                <button class="cell" data-cell-index="1"></button>
-                <button class="cell" data-cell-index="2"></button>
-                <button class="cell" data-cell-index="3"></button>
-                <button class="cell" data-cell-index="4"></button>
-                <button class="cell" data-cell-index="5"></button>
-                <button class="cell" data-cell-index="6"></button>
-                <button class="cell" data-cell-index="7"></button>
-                <button class="cell" data-cell-index="8"></button>
-            </div>
-            <div id="resultDisplay">Player X's turn</div>
-            <button id="restartButton" onclick="restartGame()">Restart Game</button>
+    <div id="game-container" class="game-play-area">
+        <h2 style="margin-bottom: 10px">Tic Tac Toe</h2>
+        <div id="difficultySelection">
+            <label>Difficulty:</label>
+            <input type="radio" name="difficulty" id="easy" value="easy"> Easy
+            <input type="radio" name="difficulty" id="medium" value="medium" checked> Medium
+            <input type="radio" name="difficulty" id="hard" value="hard"> Hard
         </div>
+        <div id="gameBoard" class="board">
+            <!-- Creating 9 cells for the Tic Tac Toe grid -->
+            <button class="cell" data-cell-index="0"></button>
+            <button class="cell" data-cell-index="1"></button>
+            <button class="cell" data-cell-index="2"></button>
+            <button class="cell" data-cell-index="3"></button>
+            <button class="cell" data-cell-index="4"></button>
+            <button class="cell" data-cell-index="5"></button>
+            <button class="cell" data-cell-index="6"></button>
+            <button class="cell" data-cell-index="7"></button>
+            <button class="cell" data-cell-index="8"></button>
+        </div>
+        <div id="resultDisplay">Player X's turn</div>
+        <button id="restartButton" onclick="restartGame()">Restart Game</button>
 
         <footer>
             <p>Copyright &copy; 2024 Game Arcade</p>

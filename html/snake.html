@@ -2,88 +2,13 @@
 
 <html lang="en">
 <head>
+
+    <!--
+        Original Code obatined form: https://github.com/xurxodiz/snake
+    -->
     <title>Snake Game</title>
 
-    <style>
-        body{
-            margin:0;
-        }
-        #menu-bar{
-            display:flex;
-            align-items: center;
-            justify-content: space-between; /* Distribute items evenly with space between them */
-            padding: 10px 0;
-            width:100%;
-            background-color: lightgray;
-            margin-bottom: 20px;
-        }
-
-        #home-button{
-            padding-left: 20px;
-        }
-
-        #github-repo-button{
-            padding-right: 30px;
-        }
-
-        .oval {
-            width: 100px;
-            height: 50px;
-            background-color: forestgreen; /* Blue background color, you can change it */
-            border-radius: 50%; /* Creates an oval shape */
-            position: relative;
-            overflow: hidden; /* Ensures bars and text stay within the oval */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .bar {
-            position: absolute;
-            width: 70%;
-            height: 8px; /* Height of the bars, adjust as needed */
-            top: 50%; /* Positions bars vertically at the center */
-            transform: translateY(-50%);
-            border-radius: 10px;
-        }
-
-        .bar.top {
-            margin-top: 5px;
-            top: 20%; /* Adjust top bar's position */
-            background-color: darkred;
-        }
-
-        .bar.bottom {
-            top: 70%; /* Adjust bottom bar's position */
-            background-color: blue;
-
-        }
-
-        .text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff; /* Text color, you can change it */
-            font-size: 12px; /* Adjust font size as needed */
-            font-weight: bold; /* Optionally make text bold */
-            text-align: center;
-        }
-
-
-
-        #game-container{
-            max-width: 500px; /* Maximum width for the game container */
-            margin: 20px auto; /* Center the game container horizontally and add consistent margin */
-            padding: 20px; /* Padding around the game container */
-            background-color: lightgray;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="../css/snake.css">
     <script type="text/javascript" src="../js/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="../js/lib.js"></script>
     <script type="text/javascript" src="../js/game.js"></script>
@@ -99,7 +24,7 @@
             </div>
         </a>
         <!--Source: https://www.flaticon.com/free-icons/cat-->
-        <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../github-logo.png"></a>
+        <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../assets/github-logo.png"></a>
     </div>
 
 

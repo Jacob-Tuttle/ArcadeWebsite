@@ -1,0 +1,154 @@
+body{
+    margin:0;
+    /*Source: https://stock.adobe.com/search?k=parrot+wallpaper&asset_id=590913678*/
+    background-image: url("../assets/birdle-background.jpg");
+    background-size: cover;
+}
+
+h2{
+    margin:0;
+}
+
+#menu-bar{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    width:100%;
+    background-color: lightgray;
+    margin-bottom: 20px;
+}
+
+#home-button{
+    padding-left: 20px;
+    color:blue;
+}
+
+#github-repo-button{
+    padding-right: 30px;
+}
+
+#game-container {
+    max-width: 500px; /* Maximum width for the game container */
+    margin: 20px auto; /* Center the game container horizontally and add consistent margin */
+    padding: 20px; /* Padding around the game container */
+    background-color: lightgray;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#game-board {
+    width: 100%; /* Take up 100% width of the game container */
+    max-width: 400px; /* Maximum width for the game board */
+    margin: 0 auto; /* Center the game board horizontally */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+
+.cell {
+    height: 70px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+@media screen and (max-width: 500px){
+    .cell{
+        height: 65px;
+        width: 65px;
+    }
+}
+
+#guessed-word-box{
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+button{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    width:60px;
+    height:40px;
+    margin-left: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+#title{
+    margin-top: 20px;
+}
+
+.wrong-position{
+    background-color: #c9b458;
+}
+
+.correct-position{
+    background-color: #6aaa64;
+}
+
+.oval {
+    width: 100px;
+    height: 50px;
+    background-color: forestgreen; /* Blue background color, you can change it */
+    border-radius: 50%; /* Creates an oval shape */
+    position: relative;
+    overflow: hidden; /* Ensures bars and text stay within the oval */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bar {
+    position: absolute;
+    width: 70%;
+    height: 8px; /* Height of the bars, adjust as needed */
+    top: 50%; /* Positions bars vertically at the center */
+    transform: translateY(-50%);
+    border-radius: 10px;
+}
+
+.bar.top {
+    margin-top: 5px;
+    top: 20%; /* Adjust top bar's position */
+    background-color: darkred;
+}
+
+.bar.bottom {
+    top: 70%; /* Adjust bottom bar's position */
+    background-color: blue;
+
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
