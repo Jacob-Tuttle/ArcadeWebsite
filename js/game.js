@@ -1,5 +1,8 @@
 var gameStarted = false;
 
+//waits for user response to start
+//the game
+//
 $( document ).ready(function() {
     showIntro();
 
@@ -17,6 +20,10 @@ function gamerun() {
   init();
 }
 
+//Called as id is increased as the game is played
+//basically how the game is animated and progress
+//over time
+//
 function step(){
   update();
   draw();
@@ -29,6 +36,9 @@ function update() {
   }
 }
 
+//Updates the screen as the snake moves
+//or on game start draws object to game board
+//
 function draw() {
   if (gameStarted) {
       screenclear();

@@ -19,23 +19,29 @@ var food;
 
 var id;
 
+//Initilizes game state after space bar down
+//
 function init() {
-  ctx = $('#canvas')[0].getContext("2d");
-  WIDTH = $("#canvas").width();
-  HEIGHT = $("#canvas").height();
+  ctx = $('#canvas')[0].getContext("2d"); //Get drawing surface reference to update game state
+  WIDTH = $("#canvas").width(); //Width of game board
+  HEIGHT = $("#canvas").height(); //Height of game board
 
   createsnake();
   newfood();
 
-  direction = 0;
+  direction = 0; //Starts going left
   size = 1;
 
-  id = setInterval(step, 100);
+  id = setInterval(step, 100); //Game clock that updates game state as time progresses
+
 
   let scoreLabel = document.querySelector('#score');
   scoreLabel.textContent = "Current Score: " + size;
 }
 
+//Updates current direction when
+//arrow key is pressed
+//
 function onKeyDown(evt) {
   if (evt.keyCode == 32) {
     return;
@@ -58,11 +64,16 @@ if ($.browser.mozilla) {
 function createsnake() {
   snake = Array();
   var head = Array();
+
+  //place snake in the center of game board
+  //
   head.x = WIDTH/2;
   head.y = HEIGHT/2;
   snake.push(head);
 }
 
+//Test for collision with snake body and game board bounds
+//
 function collision(n) {
   // are we out of the playground?
   if (n.x < 0 || n.x > WIDTH - 1 || n.y < 0 || n.y > HEIGHT - 1) {
@@ -78,6 +89,7 @@ function collision(n) {
   return false;
 }
 
+//creates food at a random position
 function newfood() {
   var wcells = WIDTH/dx;
   var hcells = HEIGHT/dy;
@@ -90,14 +102,22 @@ function newfood() {
   food.y = randomy * dy;
   food.r = dr;
   size = size+1;
+
+  //Jacob modification: Updates score display for user
   let scoreLabel = document.querySelector('#score');
   scoreLabel.textContent = "Current Score: " + size;
 }
 
+//Touching food check
+//
 function meal(n) {
   return (n.x == food.x && n.y == food.y);
 }
 
+//Handles arrow key down events
+//also check for lose conditions
+//spawns new food if food was eaten
+//
 function movesnake() {
 
   h = snake[0]; // peek head
@@ -149,9 +169,10 @@ function die() {
     clearInterval(id);
   }
   gameStarted = false;
-
 }
 
+//Food
+//
 function circle(x,y,r) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, Math.PI*2, true);
@@ -159,6 +180,8 @@ function circle(x,y,r) {
   ctx.fill();
 }
 
+//Snake parts
+//
 function rect(x,y,w,h) {
   ctx.beginPath();
   ctx.rect(x,y,w,h);
@@ -172,6 +195,9 @@ function screenclear() {
   rect(0,0,WIDTH,HEIGHT);
 }
 
+//Draws snake body using
+//rectangles
+//
 function drawsnake() {
   ctx.fillStyle = "#FFFFFF";
   snake.forEach(function(p) {
@@ -179,6 +205,9 @@ function drawsnake() {
   })
 }
 
+//Draws new food using
+//circles
+//
 function drawfood() {
   ctx.fillStyle = "#FF0000";
   circle(food.x+food.r, food.y+food.r, food.r);
