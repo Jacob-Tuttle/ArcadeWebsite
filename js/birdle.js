@@ -149,7 +149,6 @@ function addWordToGameBoard(word){
 //but in the wrong position and if the word is in the correct position
 //
 function colorCells(word) {
-    console.log(chosenWord)
     let chosenUsedLetterIndex = [];
 
     //first check for letters in correct positions

@@ -30,7 +30,6 @@ snakeButton.addEventListener('mouseover', () => {
 snakeButton.addEventListener('mouseout', () => {
     removeGameRules();
 });
-console.log(window.innerWidth)
 let mobileLayoutActive = false;
 window.onload = adjustHomeScreenLayout();
 window.addEventListener('resize', adjustHomeScreenLayout)
@@ -38,7 +37,6 @@ window.addEventListener('resize', adjustHomeScreenLayout)
 
 function adjustHomeScreenLayout() {
     const screen = window.innerWidth;
-    console.log("Size: " + screen);
     if (screen < 650 && mobileLayoutActive === false) {
         addLogoForMobileLayout();
         removeInternalContent();
