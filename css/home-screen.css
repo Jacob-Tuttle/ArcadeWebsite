@@ -8,9 +8,11 @@ body {
     position: fixed;
     height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
+
 
 .sidebar-game-button a {
     color: black;
@@ -34,7 +36,6 @@ body {
 }
 
 .sidebar-game-button{
-    margin-left: 25px;
     margin-top: 10px;
     height: 50px;
     width: 200px;
@@ -49,6 +50,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    z-index: -1;
 }
 #header{
     display: flex;
@@ -91,6 +93,58 @@ body {
 
 }
 
+@media screen and (max-width: 650px){
+    .game-rules-mobile{
+        background-color: lightgray;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 20px;
+        padding: .5%;
+        width: 90%; /* Adjust width as needed */
+        margin: auto; /* Center horizontally within the sidebar */
+    }
+
+    #side-bar{
+        width: 100%;
+    }
+
+    .oval {
+        margin-top: 10px;
+        width: 200px;
+        height: 100px;
+        background-color: forestgreen; /* Blue background color, you can change it */
+        border-radius: 50%; /* Creates an oval shape */
+        position: relative;
+        overflow: hidden; /* Ensures bars and text stay within the oval */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .bar {
+        position: absolute;
+        width: 70%;
+        height: 8px; /* Height of the bars, adjust as needed */
+        top: 50%; /* Positions bars vertically at the center */
+        transform: translateY(-50%);
+        border-radius: 10px;
+    }
+
+    .bar.top {
+        margin-top: 5px;
+        top: 20%; /* Adjust top bar's position */
+        background-color: darkred;
+    }
+
+    .bar.bottom {
+        top: 70%; /* Adjust bottom bar's position */
+        background-color: blue;
+        margin-top: 5px;
+
+    }
+}
+
 .text {
     position: absolute;
     top: 50%;
@@ -101,3 +155,16 @@ body {
     font-weight: bold; /* Optionally make text bold */
     text-align: center;
 }
+
+.game-rules{
+    background-color: lightgray;
+    border-radius: 10px;
+    margin-left: 260px;
+    width: 400px;
+    height: auto;
+    z-index: 1;
+    text-align: center;
+    font-size: 20px;
+    padding: .5%;
+}
+
