@@ -8,6 +8,8 @@
         <style>
             body{
                 margin:0;
+                background-image: url("../download.png");
+                background-size: contain;
             }
 
             a{
@@ -38,21 +40,22 @@
                 padding-right: 30px;
             }
 
-            #game-board{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+            #game-container{
+                max-width: 500px; /* Maximum width for the game container */
+                margin: 20px auto; /* Center the game container horizontally and add consistent margin */
+                padding: 20px; /* Padding around the game container */
+                background-color: lightgray;
+                border-radius: 10px;
+                text-align: center;
+
             }
 
             #hangman {
-                margin-top: 20px;
+                margin: 0 auto;
                 height: 200px;
                 width: 200px;
                 background-color: gray;
                 /* Added styles to center the image and make it fit inside the box */
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 overflow: hidden; /* Hide any parts of the image that exceed the box */
             }
 
@@ -70,23 +73,25 @@
             .letter-box{
                 width: 20px;
                 height: 40px;
-                background-color: white;
+                background-color: lightgray;
                 border-bottom: 2px solid black;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-right: 10px;
+                margin-top: 20px;
             }
 
             .letter-box-empty{
                 width: 20px;
                 height: 40px;
-                background-color: white;
+                background-color: lightgray;
                 margin-right: 10px;
+                margin-top: 20px;
             }
 
             #already-guessed-letters{
-                width: 600px;
+                width: 100%;
                 height: 50px;
                 background-color: lightgray;
                 display: flex;
@@ -137,7 +142,7 @@
             <a id="github-repo-button" href="https://github.com/Jacob-Tuttle/ArcadeWebsite"><img alt="Cat icons created by Dave Gandy - Flaticon" src="../github-logo.png"></a>
         </div>
 
-        <div id="game-board">
+        <div id="game-container">
             <div id="hangman"></div>
 
             <div id="word-to-be-guessed"></div>
@@ -176,10 +181,6 @@
                 <button id="Alphabet-Button-25" class="alphabet-button">Y</button>
                 <button id="Alphabet-Button-26" class="alphabet-button">Z</button>
             </div>
-            <div id="guessing-letter">
-
-            </div>
-
         </div>
 
         <script>
