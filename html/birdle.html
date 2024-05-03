@@ -252,7 +252,8 @@
 
 
         function handleSubmitButtonClick() {
-            if ( hasWon === false) {
+
+            if ( hasWon === false && hasLost === false) {
                 let wordEntered = textBox.value.trim().toUpperCase();
                 let isValid = validateWordEntered(wordEntered);
                 if (!isValid) {
@@ -268,9 +269,6 @@
                     addWordToGameBoard(wordEntered);
                     textBox.value = '';
                 }
-            }
-            else{
-                displayLoseMessage();
             }
         }
 
@@ -393,6 +391,11 @@
                 displayWinMessage();
                 //displayResetButton();
                 return;
+            }
+            else if(validPositionCount < 5 && currentRow === 6){
+                displayLoseMessage()
+                hasLost = true;
+                return
             }
 
             //second pass color yellow
