@@ -184,7 +184,7 @@
 
         <script>
 
-            const wordBank = ["GRAPE", "FROG", "BOB CAT"];
+            const wordBank = ["ALMOST", "ALONE", "ALONG", "ALREADY", "ANNIVERSARY", "ANNOUNCE", "ANNUAL", "ANOTHER", "ANSWER", "BEFORE", "BEGIN", "BEGINNING", "BEHAVIOR", "BEHIND", "BEING", "BELIEF", "BELIEVE", "BIOLOGICAL", "BIRD", "BIRTH", "BIRTHDAY", "BIT", "BITE", "BLACK", "BLADE", "BLAME", "BLANKET", "BLIND", "BLOCK", "BLOOD", "BLOW", "CERTAIN", "CERTAINLY", "CHAIN", "CHAIR", "CHAIRMAN", "CHALLENGE", "CHAMBER", "CHAMPION", "CHAMPIONSHIP", "CHANCE", "CHANGE", "CHANGING", "CHANNEL", "CHAPTER", "CHARACTER", "DEFENSIVE", "DEFICIT", "DEFINE", "DEFINITELY", "DEFINITION", "DEGREE", "DELAY", "DELIVER", "DELIVERY", "DEMAND", "DEMOCRACY", "DEMOCRAT", "DEMOCRATIC", "DEMONSTRATE", "DEMONSTRATION", "DENY", "DEPARTMENT", "DEPEND", "DEPENDENT", "EDUCATOR", "EFFECT", "EFFECTIVE", "EFFECTIVELY", "EFFICIENCY", "EFFICIENT", "EFFORT", "EGG", "EIGHT", "EITHER", "ELDERLY", "FATE", "FATHER", "FAULT", "FAVOR", "FAVORITE", "FEAR", "FEATURE", "FEDERAL", "FEE", "FEED", "FEEL", "FEELING", "FELLOW", "FEMALE"];
             const availableLetters = document.querySelectorAll(".alphabet-button");
             function generateRandomNumber() {return Math.floor(Math.random() * wordBank.length-1) + 1;}
             const x = generateRandomNumber();
@@ -231,7 +231,7 @@
 
             function handleAvailableLetterClick(event){
 
-                if(hangmanStage !== 7) {
+                if(hangmanStage !== 7 || !checkWin()) {
 
                     const clickedLetter = event.target.textContent;
                     let matched = false;
